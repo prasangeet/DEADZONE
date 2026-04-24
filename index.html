@@ -9,22 +9,9 @@
 <body>
 
 <canvas id="canvas"></canvas>
+<div id="custom-cursor"></div>
 
 <!-- Mobile Controls -->
-<div id="mobile-controls">
-  <div class="m-zone" id="m-left-zone"></div>
-  <div class="m-zone" id="m-right-zone"></div>
-  <div id="m-joystick"><div id="m-joystick-knob"></div></div>
-  <button class="m-btn" id="m-btn-shoot">FIRE</button>
-  <button class="m-btn" id="m-btn-aim">AIM</button>
-  <button class="m-btn" id="m-btn-jump">JUMP</button>
-  <button class="m-btn" id="m-btn-sprint">RUN</button>
-  <button class="m-btn" id="m-btn-reload">RLD</button>
-  <button class="m-btn" id="m-btn-grenade">NADE</button>
-  <button class="m-btn" id="m-btn-med">MED</button>
-  <button class="m-btn" id="m-btn-nuke">NUKE</button>
-  <button class="m-btn" id="m-btn-sight">SGT</button>
-</div>
 
 <div id="nuke-alert" style="display:none; position:fixed; top:120px; left:50%; transform:translateX(-50%); color:#ffaa00; font-size:24px; font-weight:bold; text-shadow:0 0 15px #ff2200; z-index:100; font-family:monospace; letter-spacing:4px; animation: pulse 1s infinite;">NUKE READY [N]</div>
 
@@ -81,6 +68,7 @@
   <div id="bottom-hud">
     <div class="hud-block" id="ammo-display">
       <div class="hud-label">Ammo</div>
+      <div id="weapon-name" style="font-size:10px; color:rgba(255,255,255,0.4); margin-bottom:4px; font-weight:bold; letter-spacing:1px;">PISTOL</div>
       <div class="hud-value" id="ammo-val">12</div>
       <div id="ammo-reserve">/ 48</div>
     </div>
@@ -157,6 +145,18 @@
     <div class="go-stat"><div class="val" id="pause-cash">0</div><div class="lbl">Cash</div></div>
     <div class="go-stat"><div class="val" id="pause-wave">1</div><div class="lbl">Wave</div></div>
   </div>
+
+  <div id="gfx-section">
+    <div class="gfx-label">GRAPHICS QUALITY</div>
+    <div id="gfx-buttons">
+      <button class="gfx-btn" id="gfx-low">LOW</button>
+      <button class="gfx-btn" id="gfx-medium">MED</button>
+      <button class="gfx-btn" id="gfx-high">HIGH</button>
+      <button class="gfx-btn" id="gfx-ultra">ULTRA</button>
+    </div>
+    <div id="gfx-desc"></div>
+  </div>
+
   <div style="display:flex; gap:20px;">
     <button class="overlay-btn" id="resume-btn">Resume</button>
     <button class="overlay-btn" id="quit-btn" style="border-color:#ff4444; color:#ff4444;">Quit</button>

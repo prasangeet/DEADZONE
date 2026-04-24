@@ -1,5 +1,5 @@
   * { margin: 0; padding: 0; box-sizing: border-box; }
-  body { background: #000; overflow: hidden; font-family: 'Courier New', monospace; }
+  body { background: #000; overflow: hidden; font-family: 'Courier New', monospace; cursor: auto !important; }
   #canvas { display: block; width: 100vw; height: 100vh; }
 
   /* HUD */
@@ -362,41 +362,6 @@
   .go-stat .val { font-size: 36px; font-weight: bold; color: #fff; }
   .go-stat .lbl { font-size: 10px; letter-spacing: 3px; color: rgba(255,255,255,0.4); margin-top: 4px; }
 
-  /* Mobile Controls */
-  #mobile-controls {
-    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-    z-index: 50; pointer-events: none; display: none;
-  }
-  #mobile-controls.edit-mode { z-index: 150; }
-  #mobile-controls.edit-mode .m-zone { pointer-events: none; }
-  .m-zone { position: absolute; bottom: 0; height: 100%; pointer-events: auto; }
-  #m-left-zone { left: 0; width: 50%; }
-  #m-right-zone { right: 0; width: 50%; touch-action: none; }
-  #m-joystick {
-    position: absolute; width: 120px; height: 120px; background: rgba(255,255,255,0.1);
-    border: 2px solid rgba(255,255,255,0.3); border-radius: 50%;
-    display: none; pointer-events: none; transform: translate(-50%, -50%);
-  }
-  #m-joystick-knob {
-    position: absolute; top: 50%; left: 50%; width: 50px; height: 50px;
-    background: rgba(255,255,255,0.5); border-radius: 50%;
-    transform: translate(-50%, -50%);
-  }
-  .m-btn {
-    position: absolute; background: rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.3);
-    color: #fff; font-family: 'Courier New', monospace; font-weight: bold;
-    border-radius: 50%; pointer-events: auto; user-select: none; text-align: center;
-  }
-  .m-btn:active { background: rgba(255,255,255,0.3); }
-  #m-btn-shoot   { width: 80px; height: 80px; bottom: 40px; right: 40px; font-size: 16px; border-color: #ff4444; color: #ff4444; }
-  #m-btn-aim     { width: 60px; height: 60px; bottom: 130px; right: 40px; }
-  #m-btn-jump    { width: 60px; height: 60px; bottom: 40px; right: 130px; }
-  #m-btn-reload  { width: 50px; height: 50px; bottom: 200px; right: 40px; font-size: 10px; }
-  #m-btn-grenade { width: 50px; height: 50px; bottom: 200px; right: 100px; font-size: 10px; border-color: #44ff44; color: #44ff44; }
-  #m-btn-med { width: 50px; height: 50px; bottom: 120px; right: 180px; font-size: 10px; border-color: #ff4444; color: #ff4444; }
-  #m-btn-nuke { width: 55px; height: 55px; top: 100px; right: 20px; font-size: 10px; border-color: #ffaa00; color: #ffaa00; display: none; }
-  #m-btn-sprint  { width: 60px; height: 60px; bottom: 40px; left: 180px; }
-  #m-btn-sight   { width: 50px; height: 50px; top: 20px; right: 20px; font-size: 10px; }
   /* Inventory HUD */
   #inventory-hud {
     position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%);
@@ -453,4 +418,102 @@
   @keyframes pulse {
     0%, 100% { opacity: 1; }
     50% { opacity: 0.4; }
+  }
+
+  /* Instruction Popup */
+  .instruction-popup {
+    position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);
+    width: 320px; background: rgba(0,0,0,0.9); border: 2px solid #ffaa00;
+    padding: 24px; color: #fff; z-index: 1000; text-align: center;
+    box-shadow: 0 0 40px rgba(255,170,0,0.3); border-radius: 8px;
+    backdrop-filter: blur(8px); pointer-events: auto;
+    animation: popup-in 0.4s cubic-bezier(0.18, 0.89, 0.32, 1.28) forwards;
+  }
+  .instruction-popup h2 {
+    color: #ffaa00; font-size: 20px; letter-spacing: 4px; margin-bottom: 12px;
+    text-transform: uppercase; font-weight: 900;
+  }
+  .instruction-popup p {
+    font-size: 13px; letter-spacing: 2px; color: rgba(255,255,255,0.8);
+    line-height: 1.6; margin-bottom: 24px;
+  }
+  .instruction-popup .btn {
+    background: #ffaa00; border: none; color: #000; padding: 10px 28px;
+    font-family: 'Courier New', monospace; font-weight: bold;
+    font-size: 12px; letter-spacing: 2px; text-transform: uppercase;
+    cursor: pointer; transition: all 0.2s; border-radius: 4px;
+  }
+  .instruction-popup .btn:hover { background: #ffcc00; transform: scale(1.05); }
+
+  @keyframes popup-in {
+    0% { transform: translate(-50%, -40%); opacity: 0; }
+    100% { transform: translate(-50%, -50%); opacity: 1; }
+  }
+
+  /* Custom Cursor */
+  #custom-cursor {
+    position: fixed;
+    width: 16px;
+    height: 16px;
+    background: rgba(255, 40, 40, 0.9);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 1000000;
+    display: none;
+    box-shadow: 0 0 10px #ff2222, 0 0 22px rgba(255,0,0,0.5);
+    border: 2px solid rgba(255,255,255,0.85);
+    transform: translate(-50%, -50%);
+    transition: transform 0.05s ease;
+  }
+
+  /* Graphics Quality Panel */
+  #gfx-section {
+    margin-bottom: 28px;
+    text-align: center;
+  }
+  .gfx-label {
+    font-size: 9px;
+    letter-spacing: 4px;
+    color: rgba(255,255,255,0.35);
+    margin-bottom: 12px;
+    font-family: 'Courier New', monospace;
+  }
+  #gfx-buttons {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+  }
+  .gfx-btn {
+    background: transparent;
+    border: 1px solid rgba(255,255,255,0.15);
+    color: rgba(255,255,255,0.4);
+    padding: 8px 18px;
+    font-family: 'Courier New', monospace;
+    font-size: 11px;
+    letter-spacing: 3px;
+    cursor: pointer;
+    transition: all 0.15s;
+    border-radius: 2px;
+    pointer-events: all;
+  }
+  .gfx-btn:hover {
+    border-color: rgba(255,255,255,0.55);
+    color: #fff;
+    background: rgba(255,255,255,0.06);
+  }
+  .gfx-btn.active {
+    border-color: #66ff99;
+    color: #66ff99;
+    background: rgba(102,255,153,0.08);
+    text-shadow: 0 0 8px rgba(102,255,153,0.7);
+  }
+  #gfx-desc {
+    font-size: 10px;
+    color: rgba(255,255,255,0.3);
+    max-width: 380px;
+    margin: 10px auto 0;
+    letter-spacing: 1px;
+    line-height: 1.6;
+    font-family: 'Courier New', monospace;
+    min-height: 1.6em;
   }
